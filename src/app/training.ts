@@ -45,4 +45,4 @@ const users: IUser[] = [
   { id: 4, name: 'Загир', email: 'zagir@mail.ru', age: 19 },
 ];
 
-const adults = users.filter((user) => (user.age ?? 0) > 25);
+const adults: IUser[] = users.filter((user: IUser) => (user.age ?? 0) > 25);
