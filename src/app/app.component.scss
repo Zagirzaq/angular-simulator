@@ -1,0 +1,165 @@
+.header {
+  position: relative;
+  width: 100%;
+  min-height: 985px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--inverse-color);
+
+  .bg-mountains {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/images/bg-mountains.png') no-repeat center/cover;
+    z-index: -1;
+  }
+
+  .super-header {
+    width: 100%;
+    height: 120px;
+    background-color: rgba(24, 18, 30, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+
+    &-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 1180px;
+      height: 60px;
+      gap: 130px;
+    }
+  }
+
+  .icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 143px;
+    height: 60px;
+  }
+
+  .menu-main {
+    display: flex;
+    width: 625px;
+    justify-content: space-between;
+    gap: 23px;
+
+    a {
+      text-decoration: none;
+      color: var(--inverse-color);
+    }
+  }
+
+  .button-call {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 158px;
+    height: 44px;
+    border: none;
+    background-color: #FDFDFD;
+    border-radius: 4px;
+
+    button {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+  }
+
+  .hero-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 82px;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+
+    .main-title {
+      font-size: 50px;
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      text-align: left;
+      margin-bottom: 41px;
+    }
+
+    .search-panel {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(6px);
+      border-radius: 10px;
+      padding: 0 42px;
+      height: 161px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      width: 1180px;
+      box-sizing: border-box;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      label {
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--inverse-color);
+        margin-left: 8px;
+      }
+
+      .custom-select {
+        background: transparent;
+        border: 1px solid var(--inverse-color);
+        border-radius: 8px;
+        height: 52px;
+        padding: 0 14px;
+        color: var(--inverse-color);
+        width: 270px;
+
+        option {
+          color: var(--primary-color);
+        }
+
+        &::placeholder {
+          color: var(--inverse-color);
+        }
+
+        &:focus-visible {
+          outline: none;
+        }
+      }
+
+      input[type="date"] {
+        &::-webkit-calendar-picker-indicator {
+          filter: invert(1);
+          cursor: pointer;
+        }
+      }
+    }
+
+    .search-program-btn {
+      width: 213px;
+      height: 52px;
+      background-color: #1A3E3E;
+      border: none;
+      border-radius: 4px;
+      color: var(--inverse-color);
+      cursor: pointer;
+      margin-bottom: 24px;
+    }
+  }
+}

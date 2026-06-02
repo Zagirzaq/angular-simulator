@@ -1,1 +1,55 @@
-<h1 style="display: flex; justify-content: center; font-family: sans-serif;">NGX SIMULATOR</h1>
+<header class="header">
+  <div class="bg-mountains"></div>
+  <div class="super-header">
+    <div class="container super-header-container">
+      <div class="icons">
+        <img src="/images/icon-mountains.svg" alt="Логотип горы" width="138" height="28"/>
+        <span class="bold">{{ companyName }}</span>
+      </div>
+      <nav class="menu-main fs-18 semi-bold">
+        <a id="nav-home" href="/">Главная</a>
+        <a id="nav-about-guide" href="/">Про гида</a>
+        <a id="nav-program" href="/">Программа тура</a>
+        <a id="nav-price" href="/">Стоимость</a>
+        <a id="nav-blog" href="/">Блог</a>
+        <a id="nav-contacts" href="/">Контакты</a>
+      </nav>
+      <div class="button-call ">
+        <button id="consultation-btn" class="fs-16 semi-bold">Консультация</button>
+      </div>
+    </div>
+  </div>
+  <section class="hero-section">
+    <h1 class="main-title regular">
+      Насладись прогулкой в горах <br />с командой единомышленников
+    </h1>
+    <div class="search-panel">
+      <div class="input-group">
+        <select class="custom-select fs-16 bold">
+          <option value="" disabled selected>Локация для тура</option>
+          <option>Гора Эверест</option>
+          <option>Марианская впадина</option>
+          <option>Гора Ай-Петри</option>
+          <option>Ключевская сопка</option>
+        </select>
+        <label class="regular fs-14">выберите из списка</label>
+      </div>
+      <div class="input-group">
+        <input class="custom-select fs-16 bold" type="date" value="02.06.2026" />
+        <label class="regular fs-14">укажите дату</label>
+      </div>
+      <div class="input-group">
+        <select class="custom-select fs-16 bold">
+          <option value="" disabled selected>Участники</option>
+          <option>1 человек</option>
+          <option>2 человека</option>
+          <option>3 человека</option>
+          <option>4 человек</option>
+          <option>более 4 человек</option>
+        </select>
+        <label class="regular fs-14">выберите из списка</label>
+      </div>
+      <button id="find-program-btn" class="search-program-btn bold fs-16">Найти программу</button>
+    </div>
+  </section>
+</header>
