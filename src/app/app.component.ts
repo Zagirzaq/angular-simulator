@@ -8,7 +8,8 @@ import { Collection } from './collection';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  companyName: string = 'Р У М Т И Б Е Т';
+
+  companyName: string = 'РУМТИБЕТ';
 
   constructor() {
     this.saveLastVisit();
@@ -16,8 +17,8 @@ export class AppComponent {
     this.demonstrateCollections();
   }
 
-  isPrimaryColor(color: Color): boolean {
-    return Object.values(Color).includes(color);
+  isPrimaryColor(color: string): boolean {
+    return Object.values(Color).includes(color as Color);
   }
 
   private saveLastVisit(): void {
@@ -32,13 +33,10 @@ export class AppComponent {
 
   private demonstrateCollections(): void {
     const numberCollection = new Collection<number>([10, 20, 30]);
-    console.log('Числа:', numberCollection.getAll());
     numberCollection.replace(1, 99);
-    console.log('После замены:', numberCollection.getAll());
-    
+
     const stringCollection = new Collection<string>(['один', 'два', 'три']);
-    console.log('Строки:', stringCollection.getAll());
     stringCollection.remove(0);
-    console.log('После удаления:', stringCollection.getAll());
   }
+
 }
