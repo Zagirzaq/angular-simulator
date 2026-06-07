@@ -9,7 +9,7 @@ import { Collection } from './collection';
 })
 export class AppComponent {
 
-  companyName: string = 'РУМТИБЕТ';
+  companyName: string = 'румтибет';
 
   constructor() {
     this.saveLastVisit();
@@ -17,8 +17,9 @@ export class AppComponent {
     this.demonstrateCollections();
   }
 
-  isPrimaryColor(color: string): boolean {
-    return Object.values(Color).includes(color as Color);
+  isPrimaryColor(color: Color): boolean {
+    const primaryColors: Color[] = [Color.RED, Color.GREEN, Color.BLUE];
+    return primaryColors.includes(color);
   }
 
   private saveLastVisit(): void {
@@ -32,10 +33,10 @@ export class AppComponent {
   }
 
   private demonstrateCollections(): void {
-    const numberCollection = new Collection<number>([10, 20, 30]);
+    const numberCollection: Collection<number> = new Collection<number>([10, 20, 30]);
     numberCollection.replace(1, 99);
 
-    const stringCollection = new Collection<string>(['один', 'два', 'три']);
+    const stringCollection: Collection<string> = new Collection<string>(['один', 'два', 'три']);
     stringCollection.remove(0);
   }
 
