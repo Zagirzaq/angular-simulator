@@ -3,6 +3,9 @@
 
 * {
     font-family: 'Nunito Sans';
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
 }
 
 .container {
@@ -14,6 +17,12 @@
     --primary-color: #18121E;
     --inverse-color: #FDFDFD;
     --secondary-color: #F2BE22;
+    --light-gray-bg: #F3F5F4;
+    --light-bg: #FFFFFF;
+    --color-button: #1A3E3E;
+
+;
+
 }
 
 .fs-14 {
