@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Color } from '../enums/Color';
 import { Collection } from './collection';
 import { FormsModule } from '@angular/forms';
-import { IServisce } from '../interfaces/IService';
+import { IService } from '../interfaces/IService';
 
 @Component({
   selector: 'app-root',
@@ -15,16 +15,17 @@ export class AppComponent implements OnInit, OnDestroy {
   companyName: string = 'РУМТИБЕТ';
   isPageLoading: boolean = true;
 
-  services: IServisce[] = [
-    { id: 1, scr: 'people-icon', 
+  services: IService[] = [
+    { id: 1, 
+      icon: 'people-icon', 
       title: 'Опытный гид', 
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.' },
     { id: 2, 
-      scr: 'shield-icon', 
+      icon: 'shield-icon', 
       title: 'Безопасный поход', 
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.' },
     { id: 3, 
-      scr: 'tag-icon', 
+      icon: 'tag-icon', 
       title: 'Лояльные цены', 
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.' }
   ];
@@ -34,12 +35,10 @@ export class AppComponent implements OnInit, OnDestroy {
   tourMembers: string = '';
 
   currentDate: string = '';
-  private timerInterval: any;
+  private timerInterval: number | undefined;
 
   clickCounter: number = 0;
-
   activePanel: 'datetime' | 'counter' = 'datetime';
-
   liveText: string = '';
 
   constructor() {
@@ -104,11 +103,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private startTimer(): void {
     this.updateDate();
-    this.timerInterval = setInterval(() => this.updateDate(), 1000);
+    this.timerInterval = setInterval(() => this.updateDate(), 1000) as unknown as number;
   }
 
   private updateDate(): void {
-    const now = new Date();
+    const now: Date = new Date();
     this.currentDate = now.toLocaleString('ru-RU', {
       day: 'numeric', month: 'long', year: 'numeric',
       hour: '2-digit', minute: '2-digit', second: '2-digit'

@@ -112,7 +112,7 @@
           <div class="for-container">
             @for (service of services; track service.id) {
               <div class="service-card">
-                <img src="/images/{{ service.scr }}.svg" alt="{{ service.scr }}">
+                <img [src]="'/images/' + service.icon + '.svg'" [alt]="service.title" />
                 <div class="description-for">
                   <h3 class="fs-18 bold">{{ service.title }}</h3>
                   <p class="fs-14 regular">{{ service.description }}</p>

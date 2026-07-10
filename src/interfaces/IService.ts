@@ -1,6 +1,6 @@
-export interface IServisce {
+export interface IService {
     id: number;
-    scr: string;
+    icon: string;
     title: string;
     description: string;
 }
