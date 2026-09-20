@@ -459,3 +459,108 @@
     transform: scale(1.03);
   }
 }
+
+.popular-destinations {
+  background-color: var(--light-bg);
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .popular-destinations-container{
+    width: 1180px;
+    display: flex;
+    margin: 80px 370px 100px 370px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    .title-container{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 580px;
+      height: 66px;
+      gap: 8px;
+      .title-wrapper{
+        color: var(--secondary-color);
+      }
+      .title-main-wrapper{
+        color: var(--primary-color);
+      }
+    }
+    .popular-destinations-img-container{
+      display: flex;
+      height: 500px;
+      gap: 20px;
+      .popular-destinations-img{
+        position: relative;
+        width: 380px;
+        height: 500px;
+        img{
+          width: 380px;
+          height: 500px;
+          border-radius: 32px;
+        }
+        .rating{
+          display: flex;
+          flex-direction: row;
+          gap: 3px;
+          justify-content: center;
+          align-items: center;
+          width: 65px;
+          height: 32px;
+          background-color: rgba(253, 253, 253, 0.4);
+          border-top-left-radius: 4px;
+          border-bottom-left-radius: 4px;
+          position: absolute;
+          z-index: 1;
+          top: 50px;
+          right: 0;
+          img{
+          width: 24px;
+          height: 24px;
+          }
+          color: var(--color-button); 
+        }
+        .popular-destination-description{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: row;
+          gap: 35px;
+          position: absolute;
+          width: 380px;
+          height: 90px;
+          bottom: 0;
+          z-index: 1;
+          color: var(--inverse-color);
+          background-color: rgba(255, 255, 255, 0.2);
+          border-bottom-left-radius: 32px;
+          border-bottom-right-radius: 32px;
+          backdrop-filter: blur(6px);
+          .cost-of-the-service{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            width: 86px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.3);
+          }
+        }
+      }
+      
+    }
+    .popular-destinations-btn{
+      width: 244px;
+      height: 52px;
+      background-color: var(--color-button);
+      border: none;
+      border-radius: 4px;
+      color: var(--inverse-color);
+    }
+    
+  }
+}
+
