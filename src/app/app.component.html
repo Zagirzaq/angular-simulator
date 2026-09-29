@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="widgets-row">
-      <button id="toggle-widget-btn" class="toggle-widget-btn" (click)="switchPanel()">
+      <button id="toggle-widget-btn" class="toggle-widget-btn" (click)="onSwitchPanel()">
         {{ activePanel === 'datetime' ? 'Показать счётчик' : 'Показать дату' }}
       </button>
       @if (activePanel === 'datetime') {
@@ -38,9 +38,9 @@
       }
       @if (activePanel === 'counter') {
         <div class="widget-content">
-          <button id="decrement-btn" class="btn-control minus" (click)="decrement()" [disabled]="clickCounter === 0">−</button>
+          <button id="decrement-btn" class="btn-control minus" (click)="handleDecrement()" [disabled]="clickCounter === 0">−</button>
           <span class="count-display">{{ clickCounter }}</span>
-          <button id="increment-btn" class="btn-control plus" (click)="increment()">+</button>
+          <button id="increment-btn" class="btn-control plus" (click)="handleIncrement()">+</button>
         </div>
       }
     </div>
@@ -95,8 +95,8 @@
       <div class="details">
         <h3 class="title-wrapper regular">о нашем походе</h3>
         <h2 class="title-main-wrapper bold">Исследуйте все горные массивы мира вместе с нами</h2>
-        <p class="description fs-18 regular">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
-        <button class="consultation-btn fs-16 semi-bold">Программа тура</button>
+        <p class="description fs-18 regular">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur" и занялся его поисками в классической латинской литературе.</p>
+        <button id="tour-program-btn" class="consultation-btn fs-16 semi-bold">Программа тура</button>
       </div>
     </div>
   </section>
@@ -120,7 +120,7 @@
               </div>
             }
           </div>
-          <button class="consultation-btn fs-16 semi-bold">Стоимость программ</button>
+          <button id="program-price-btn" class="consultation-btn fs-16 semi-bold">Стоимость программ</button>
         </div>
       </div>
       <div class="offer-img">
@@ -138,50 +138,24 @@
         <h2 class="title-main-wrapper bold fs-32">Популярные направления</h2>
       </div>
       <div class="popular-destinations-img-container">
-        <div class="popular-destinations-img">
-          <img class="lake-by-the-mountains" src="/images/lake-by-the-mountains.png">
-          <div class="rating">
-            <img src="/images/star-icon.svg">
-            <p class="fs-14 bold">4.9</p>
-          </div>
-          <div class="popular-destination-description">
-            <div class="service-description">
-              <h2 class="title-main-wrapper bold fs-24">Озеро возле гор</h2>
-              <p class="title-wrapper regular fs-14">романтическое приключение</p>
+        @for (popularDestination of popularDestinations; track popularDestination.id) {
+          <div class="popular-destinations-img">
+            <img [src]="'/images/' + popularDestination.img + '.png'" [alt]="popularDestination.title" />
+            <div class="rating">
+              <img src="/images/star-icon.svg">
+              <p class="fs-14 bold">{{ popularDestination.rating }}</p>
             </div>
-            <div class="cost-of-the-service fs-20 bold">480 &dollar;</div>
-          </div>
-        </div>
-        <div class="popular-destinations-img">
-          <img class="night-in-the-mountains" src="/images/night-in-the-mountains.png">
-          <div class="rating">
-            <img src="/images/star-icon.svg">
-            <p class="fs-14 bold">4.5</p>
-          </div>
-          <div class="popular-destination-description">
-            <div class="service-description">
-              <h2 class="title-main-wrapper bold fs-24">Ночь в горах</h2>
-              <p class="title-wrapper regular fs-14">в компании друзей</p>
+            <div class="popular-destination-description">
+              <div class="service-description">
+                <h2 class="title-main-wrapper bold fs-24">{{ popularDestination.title }}</h2>
+                <p class="title-wrapper regular fs-14">{{ popularDestination.description }}</p>
+              </div>
+              <div class="cost-of-the-service fs-20 bold">{{ popularDestination.cost }} &dollar;</div>
             </div>
-            <div class="cost-of-the-service fs-20 bold">500 &dollar;</div>
           </div>
-        </div>
-        <div class="popular-destinations-img">
-          <img class="stretching-in-the-mountains" src="/images/stretching-in-the-mountains.png">
-          <div class="rating">
-            <img src="/images/star-icon.svg" >
-            <p class="fs-14 bold">5.0</p>
-          </div>
-          <div class="popular-destination-description">
-            <div class="service-description">
-              <h2 class="title-main-wrapper bold fs-24">Растяжка в горах</h2>
-              <p class="title-wrapper regular fs-14">для тех, кто забоится о себе</p>
-            </div>
-            <div class="cost-of-the-service fs-20 bold">230 &dollar;</div>
-          </div>
-        </div>
+        }
       </div>
-    <button class="popular-destinations-btn fs-16 semi-bold">Рейтинг направлений</button>
+      <button id="destinations-rating-btn" class="popular-destinations-btn fs-16 semi-bold">Рейтинг направлений</button>
     </div>
   </section>
 } 

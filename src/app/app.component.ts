@@ -3,6 +3,7 @@ import { Color } from '../enums/Color';
 import { Collection } from './collection';
 import { FormsModule } from '@angular/forms';
 import { IService } from '../interfaces/IService';
+import { IPopularDestination } from '../interfaces/IPopularDestination';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,9 @@ import { IService } from '../interfaces/IService';
 export class AppComponent implements OnInit, OnDestroy {
   companyName: string = 'РУМТИБЕТ';
   isPageLoading: boolean = true;
+
+  readonly PAGE_LOADING_DELAY_MS: number = 2000;
+  readonly DATE_UPDATE_INTERVAL_MS: number = 1000;
 
   services: IService[] = [
     { id: 1, 
@@ -28,6 +32,27 @@ export class AppComponent implements OnInit, OnDestroy {
       icon: 'tag-icon', 
       title: 'Лояльные цены', 
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.' }
+  ];
+
+  popularDestinations: IPopularDestination[] = [
+    { id: 1,
+      img: 'lake-by-the-mountains',
+      rating: '4.9',
+      title: 'Озеро возле гор',
+      description: 'романтическое приключение',
+      cost: '480' },
+    { id: 2,
+      img: 'night-in-the-mountains',
+      rating: '4.5',
+      title: 'Ночь в горах',
+      description: 'в компании друзей',
+      cost: '500' },
+    { id: 3,
+      img: 'stretching-in-the-mountains',
+      rating: '5.0',
+      title: 'Растяжка в горах',
+      description: 'для тех, кто заботится о себе',
+      cost: '230' }
   ];
 
   tourLocation: string = '';
@@ -51,7 +76,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.startTimer();
     setTimeout(() => {
       this.isPageLoading = false;
-    }, 2000);
+    }, this.PAGE_LOADING_DELAY_MS);
   }
 
   ngOnDestroy(): void {
@@ -66,15 +91,15 @@ export class AppComponent implements OnInit, OnDestroy {
            this.tourMembers.trim() !== '';
   }
 
-  switchPanel(): void {
+  onSwitchPanel(): void {
     this.activePanel = this.activePanel === 'datetime' ? 'counter' : 'datetime';
   }
 
-  increment(): void {
+  handleIncrement(): void {
     this.clickCounter++;
   }
 
-  decrement(): void {
+  handleDecrement(): void {
     if (this.clickCounter > 0) {
       this.clickCounter--;
     }
@@ -103,7 +128,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private startTimer(): void {
     this.updateDate();
-    this.timerInterval = setInterval(() => this.updateDate(), 1000) as unknown as number;
+    this.timerInterval = setInterval(() => this.updateDate(), this.DATE_UPDATE_INTERVAL_MS) as unknown as number;
   }
 
   private updateDate(): void {
