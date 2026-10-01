@@ -158,4 +158,28 @@
       <button id="destinations-rating-btn" class="popular-destinations-btn fs-16 semi-bold">Рейтинг направлений</button>
     </div>
   </section>
+  <section class="travel-blog">
+    <div class="travel-blog-container">
+      <div class="title-container">
+        <h3 class="title-wrapper regular fs-24">делимся впечатлениями</h3>
+        <h2 class="title-main-wrapper bold fs-32">Блог о путешествиях</h2>
+      </div>
+      <div class="blog-cards">
+        @for (blogArticle of blogArticles; track blogArticle.id) {
+              <div class="blog-card">
+                <img class="blog-card-img" [src]="'/images/' + blogArticle.img + '.png'" [alt]="blogArticle.title">
+                <div class="blog-card-content">
+                  <h2 class="blog-card-title fs-24 bold">{{ blogArticle.title }}</h2>
+                  <p class="blog-card-text fs-14 regular">{{ blogArticle.description }}</p>
+                  <div class="blog-card-footer">
+                    <span class="blog-card-date fs-14 bold">{{ blogArticle.date }}</span>
+                    <span class="blog-card-more fs-14 bold">читать статью</span>
+                  </div>
+                </div>
+              </div>
+          }
+      </div>
+    <button id="more-articles-btn" class="travel-blog-btn fs-16 semi-bold">Другие материалы</button>
+    </div>
+  </section>
 } 
