@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="widgets-row">
-      <button id="toggle-widget-btn" class="toggle-widget-btn" (click)="switchPanel()">
+      <button id="toggle-widget-btn" class="toggle-widget-btn" (click)="onSwitchPanel()">
         {{ activePanel === 'datetime' ? 'Показать счётчик' : 'Показать дату' }}
       </button>
       @if (activePanel === 'datetime') {
@@ -38,9 +38,9 @@
       }
       @if (activePanel === 'counter') {
         <div class="widget-content">
-          <button id="decrement-btn" class="btn-control minus" (click)="decrement()" [disabled]="clickCounter === 0">−</button>
+          <button id="decrement-btn" class="btn-control minus" (click)="handleDecrement()" [disabled]="clickCounter === 0">−</button>
           <span class="count-display">{{ clickCounter }}</span>
-          <button id="increment-btn" class="btn-control plus" (click)="increment()">+</button>
+          <button id="increment-btn" class="btn-control plus" (click)="handleIncrement()">+</button>
         </div>
       }
     </div>
@@ -95,8 +95,8 @@
       <div class="details">
         <h3 class="title-wrapper regular">о нашем походе</h3>
         <h2 class="title-main-wrapper bold">Исследуйте все горные массивы мира вместе с нами</h2>
-        <p class="description fs-18 regular">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
-        <button class="consultation-btn fs-16 semi-bold">Программа тура</button>
+        <p class="description fs-18 regular">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur" и занялся его поисками в классической латинской литературе.</p>
+        <button id="tour-program-btn" class="consultation-btn fs-16 semi-bold">Программа тура</button>
       </div>
     </div>
   </section>
@@ -120,7 +120,7 @@
               </div>
             }
           </div>
-          <button class="consultation-btn fs-16 semi-bold">Стоимость программ</button>
+          <button id="program-price-btn" class="consultation-btn fs-16 semi-bold">Стоимость программ</button>
         </div>
       </div>
       <div class="offer-img">
@@ -131,4 +131,55 @@
       </div>
     </div>
   </section>
-}
+  <section class="popular-destinations">
+    <div class="popular-destinations-container">
+      <div class="title-container">
+        <h3 class="title-wrapper regular fs-24">по версии отдыхающих</h3>
+        <h2 class="title-main-wrapper bold fs-32">Популярные направления</h2>
+      </div>
+      <div class="popular-destinations-img-container">
+        @for (popularDestination of popularDestinations; track popularDestination.id) {
+          <div class="popular-destinations-img">
+            <img [src]="'/images/' + popularDestination.img + '.png'" [alt]="popularDestination.title" />
+            <div class="rating">
+              <img src="/images/star-icon.svg" alt="star-icon">
+              <p class="fs-14 bold">{{ popularDestination.rating }}</p>
+            </div>
+            <div class="popular-destination-description">
+              <div class="service-description">
+                <h2 class="title-main-wrapper bold fs-24">{{ popularDestination.title }}</h2>
+                <p class="title-wrapper regular fs-14">{{ popularDestination.description }}</p>
+              </div>
+              <div class="cost-of-the-service fs-20 bold">{{ popularDestination.cost }} &dollar;</div>
+            </div>
+          </div>
+        }
+      </div>
+      <button id="destinations-rating-btn" class="popular-destinations-btn fs-16 semi-bold">Рейтинг направлений</button>
+    </div>
+  </section>
+  <section class="travel-blog">
+    <div class="travel-blog-container">
+      <div class="title-container">
+        <h3 class="title-wrapper regular fs-24">делимся впечатлениями</h3>
+        <h2 class="title-main-wrapper bold fs-32">Блог о путешествиях</h2>
+      </div>
+      <div class="blog-cards">
+        @for (blogArticle of blogArticles; track blogArticle.id) {
+              <div class="blog-card">
+                <img class="blog-card-img" [src]="'/images/' + blogArticle.img + '.png'" [alt]="blogArticle.title">
+                <div class="blog-card-content">
+                  <h2 class="blog-card-title fs-24 bold">{{ blogArticle.title }}</h2>
+                  <p class="blog-card-text fs-14 regular">{{ blogArticle.description }}</p>
+                  <div class="blog-card-footer">
+                    <span class="blog-card-date fs-14 bold">{{ blogArticle.date }}</span>
+                    <span class="blog-card-more fs-14 bold">читать статью</span>
+                  </div>
+                </div>
+              </div>
+          }
+      </div>
+    <button id="more-articles-btn" class="travel-blog-btn fs-16 semi-bold">Другие материалы</button>
+    </div>
+  </section>
+} 
