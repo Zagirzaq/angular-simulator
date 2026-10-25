@@ -5,11 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { IService } from '../interfaces/IService';
 import { IPopularDestination } from '../interfaces/IPopularDestination';
 import { IBlogArticle } from '../interfaces/IBlogArticle';
+import { MessageType } from '../enums/MessageType';
+import { MessageService } from './services/message.service';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, NgTemplateOutlet],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
@@ -17,6 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
   companyName: string = 'РУМТИБЕТ';
   isPageLoading: boolean = true;
 
+  readonly MessageType = MessageType;
   readonly PAGE_LOADING_DELAY_MS: number = 2000;
   readonly DATE_UPDATE_INTERVAL_MS: number = 1000;
 
@@ -71,7 +75,7 @@ export class AppComponent implements OnInit, OnDestroy {
   blogArticles: IBlogArticle[] = [
     {
       id: 1,
-      img: 'village-in-italy',
+      img: 'village-in-Italy',
       title: 'Красивая Италия, какая она в реальности?',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       date: '01/04/2023'
@@ -110,7 +114,7 @@ export class AppComponent implements OnInit, OnDestroy {
   activePanel: 'datetime' | 'counter' = 'datetime';
   liveText: string = '';
 
-  constructor() {
+  constructor(readonly messageService: MessageService) {
     this.saveLastVisit();
     this.incrementVisitCount();
     this.demonstrateCollections();

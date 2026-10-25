@@ -96,7 +96,7 @@
         <h3 class="title-wrapper regular">о нашем походе</h3>
         <h2 class="title-main-wrapper bold">Исследуйте все горные массивы мира вместе с нами</h2>
         <p class="description fs-18 regular">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur" и занялся его поисками в классической латинской литературе.</p>
-        <button id="tour-program-btn" class="consultation-btn fs-16 semi-bold">Программа тура</button>
+        <button id="tour-program-btn" class="consultation-btn fs-16 semi-bold" (click)="messageService.addMessage('Программа недоступна', MessageType.WARN)">Программа тура</button>
       </div>
     </div>
   </section>
@@ -120,7 +120,7 @@
               </div>
             }
           </div>
-          <button id="program-price-btn" class="consultation-btn fs-16 semi-bold">Стоимость программ</button>
+          <button id="program-price-btn" class="consultation-btn fs-16 semi-bold" (click)="messageService.addMessage('Стоимость отправлена на почту', MessageType.INFO)">Стоимость программ</button>
         </div>
       </div>
       <div class="offer-img">
@@ -155,7 +155,7 @@
           </div>
         }
       </div>
-      <button id="destinations-rating-btn" class="popular-destinations-btn fs-16 semi-bold">Рейтинг направлений</button>
+      <button id="destinations-rating-btn" class="popular-destinations-btn fs-16 semi-bold" (click)="messageService.addMessage('Направления получены', MessageType.SUCCESS)">Рейтинг направлений</button>
     </div>
   </section>
   <section class="travel-blog">
@@ -179,7 +179,25 @@
               </div>
           }
       </div>
-    <button id="more-articles-btn" class="travel-blog-btn fs-16 semi-bold">Другие материалы</button>
+    <button id="more-articles-btn" class="travel-blog-btn fs-16 semi-bold" (click)="messageService.addMessage('Материалы недоступны', MessageType.ERROR)">Другие материалы</button>
     </div>
   </section>
+  <ng-template #messageTemplate let-message>
+    <div class="message">
+      <img class="message-icon" src="/images/message-icon.svg" [alt]="message.type">
+      <div class="info-container">
+        <h3 class="fs-16 bold">{{ message.type }}</h3>
+        <p class="fs-14 regular">{{ message.text }}</p>
+      </div>
+      <button type="button" class="close-btn" (click)="messageService.closeMessage(message.id)"><img class="close-icon" src="/images/close-icon.svg" alt="closes the message"></button>
+    </div>
+  </ng-template>
+  <div class="messages-container">
+    @for (message of messageService.currentMessages; track message.id) {
+      <ng-container
+        [ngTemplateOutlet]="messageTemplate"
+        [ngTemplateOutletContext]="{ $implicit: message }">
+      </ng-container>
+    }
+  </div>
 } 

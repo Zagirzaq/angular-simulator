@@ -661,3 +661,49 @@
     }
   }
 }
+
+.messages-container {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  top: 40px;
+  right: 20px;
+  z-index: 10;
+  .message {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    width: 350px;
+    height: 72px;
+    background-color: var(--message-bg);
+    border-radius: 10px;
+    border: 1px solid var(--light-bg);
+    position: relative;
+    gap: 15px;
+    padding: 15px;
+    .message-icon {
+      width: 40px;
+      height: 40px;
+    }
+    .info-container {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      width: 253px;
+      height: 40px;
+      color: var(--message-text-color);
+    }
+    .close-btn {
+      position: absolute;
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+      border: none;
+      background-color: transparent;
+      top: 7px;
+      right: 7px;
+    }
+  }
+} 
