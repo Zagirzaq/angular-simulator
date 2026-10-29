@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Color } from '../enums/Color';
 import { Collection } from './collection';
 import { FormsModule } from '@angular/forms';
@@ -8,13 +8,15 @@ import { IBlogArticle } from '../interfaces/IBlogArticle';
 import { MessageType } from '../enums/MessageType';
 import { MessageService } from './services/message.service';
 import { NgTemplateOutlet } from '@angular/common';
+import { LocalStorageService } from './services/local-storage.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [FormsModule, NgTemplateOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [MessageService]
 })
 export class AppComponent implements OnInit, OnDestroy {
   companyName: string = 'РУМТИБЕТ';
@@ -23,6 +25,8 @@ export class AppComponent implements OnInit, OnDestroy {
   readonly MessageType = MessageType;
   readonly PAGE_LOADING_DELAY_MS: number = 2000;
   readonly DATE_UPDATE_INTERVAL_MS: number = 1000;
+  readonly messageService: MessageService = inject(MessageService);
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   services: IService[] = [
     {
@@ -114,7 +118,7 @@ export class AppComponent implements OnInit, OnDestroy {
   activePanel: 'datetime' | 'counter' = 'datetime';
   liveText: string = '';
 
-  constructor(readonly messageService: MessageService) {
+  constructor() {
     this.saveLastVisit();
     this.incrementVisitCount();
     this.demonstrateCollections();
@@ -135,8 +139,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   isFormValid(): boolean {
     return this.tourLocation.trim() !== '' &&
-           this.tourDate.trim() !== '' &&
-           this.tourMembers.trim() !== '';
+    this.tourDate.trim() !== '' &&
+    this.tourMembers.trim() !== '';
   }
 
   onSwitchPanel(): void {
@@ -159,12 +163,12 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private saveLastVisit(): void {
-    localStorage.setItem('lastVisit', new Date().toString());
+    this.localStorageService.setItem('lastVisit', new Date());
   }
 
   private incrementVisitCount(): void {
-    const visits: number = Number(localStorage.getItem('visitCount')) || 0;
-    localStorage.setItem('visitCount', (visits + 1).toString());
+    const visits: number = this.localStorageService.getItem<number>('visitCount') || 0;
+    this.localStorageService.setItem<number>('visitCount', visits + 1);
   }
 
   private demonstrateCollections(): void {
