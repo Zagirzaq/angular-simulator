@@ -189,7 +189,9 @@
         <h3 class="fs-16 bold">{{ message.type }}</h3>
         <p class="fs-14 regular">{{ message.text }}</p>
       </div>
-      <button type="button" class="close-btn" (click)="messageService.closeMessage(message.id)"><img class="close-icon" src="/images/close-icon.svg" alt="closes the message"></button>
+      @for (message of messageService.currentMessages; track message.id) {
+        <button type="button" [id]="'close-message-btn-' + message.id" class="close-btn" (click)="messageService.closeMessage(message.id)"><img class="close-icon" src="/images/close-icon.svg" alt="closes the message"></button>
+      }
     </div>
   </ng-template>
   <div class="messages-container">

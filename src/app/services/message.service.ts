@@ -4,9 +4,10 @@ import { MessageType } from '../../enums/MessageType';
 
 @Injectable()
 export class MessageService {
+
   private messages: IMessage[] = [];
   private lastId: number = 0;
-  private readonly MESSAGE_LIFETIME_MS: number = 5000;
+  private MESSAGE_LIFETIME_MS: number = 5000;
 
   get currentMessages(): IMessage[] {
     return this.messages;
@@ -20,14 +21,14 @@ export class MessageService {
       text: text,
       type: type,
     };
-    this.messages.unshift(message);
-
+    this.messages = [message, ...this.messages];
     setTimeout(() => {
       this.closeMessage(message.id);
     }, this.MESSAGE_LIFETIME_MS);
   }
 
   closeMessage(id: number): void {
-    this.messages = this.messages.filter(message => message.id !== id);
+    this.messages = this.messages.filter((message: IMessage) => message.id !== id);
   }
+
 }

@@ -19,14 +19,14 @@ import { LocalStorageService } from './services/local-storage.service';
   providers: [MessageService]
 })
 export class AppComponent implements OnInit, OnDestroy {
+
+  messageService: MessageService = inject(MessageService);
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
+  MessageType = MessageType;
+  PAGE_LOADING_DELAY_MS: number = 2000;
+  DATE_UPDATE_INTERVAL_MS: number = 1000;
   companyName: string = 'РУМТИБЕТ';
   isPageLoading: boolean = true;
-
-  readonly MessageType = MessageType;
-  readonly PAGE_LOADING_DELAY_MS: number = 2000;
-  readonly DATE_UPDATE_INTERVAL_MS: number = 1000;
-  readonly messageService: MessageService = inject(MessageService);
-  private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   services: IService[] = [
     {
@@ -110,13 +110,11 @@ export class AppComponent implements OnInit, OnDestroy {
   tourLocation: string = '';
   tourDate: string = '';
   tourMembers: string = '';
-
   currentDate: string = '';
-  private timerInterval: number | undefined;
-
   clickCounter: number = 0;
   activePanel: 'datetime' | 'counter' = 'datetime';
   liveText: string = '';
+  private timerInterval: number | undefined;
 
   constructor() {
     this.saveLastVisit();
@@ -190,4 +188,5 @@ export class AppComponent implements OnInit, OnDestroy {
       hour: '2-digit', minute: '2-digit', second: '2-digit'
     });
   }
+
 }
