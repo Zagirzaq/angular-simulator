@@ -22,7 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   messageService: MessageService = inject(MessageService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
-  MessageType = MessageType;
+  MessageType: typeof MessageType = MessageType;
   PAGE_LOADING_DELAY_MS: number = 2000;
   DATE_UPDATE_INTERVAL_MS: number = 1000;
   companyName: string = 'РУМТИБЕТ';
