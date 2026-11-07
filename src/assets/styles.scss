@@ -20,6 +20,8 @@
     --light-gray-bg: #F3F5F4;
     --light-bg: #FFFFFF;
     --color-button: #1A3E3E;
+    --message-bg: rgba(15, 23, 42, 0.85);
+    --message-text-color: #E8E9EB;
 }
 
 .fs-14 {
@@ -36,6 +38,14 @@
 
 .fs-20 {
   font-size: 20px;
+}
+
+.fs-24 {
+  font-size: 24px;
+}
+
+.fs-32 {
+  font-size: 32px;
 }
 
 .regular {
