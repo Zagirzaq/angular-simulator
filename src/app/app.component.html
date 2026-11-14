@@ -202,4 +202,19 @@
       </ng-container>
     }
   </div>
+  <section class="photo-report">
+    <div class="photo-report-container">
+      <div class="title-container">
+        <h3 class="title-wrapper regular fs-24">фото-отчет</h3>
+        <h2 class="title-main-wrapper bold fs-32">Делимся впечатлениями</h2>
+      </div>
+    <div class="gallery-container">
+      @for (galleryPhotos of galleryPhoto; track galleryPhotos.id) {
+            <div class="gallery-card">
+              <img class="gallery-card-img" [src]="'/images/' + galleryPhotos.img + '.png'" [alt]="galleryPhotos.title">
+            </div>
+        }
+    </div>
+    </div>
+  </section>
 } 
