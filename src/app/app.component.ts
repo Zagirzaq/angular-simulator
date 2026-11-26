@@ -5,15 +5,19 @@ import { FormsModule } from '@angular/forms';
 import { IService } from '../interfaces/IService';
 import { IPopularDestination } from '../interfaces/IPopularDestination';
 import { IBlogArticle } from '../interfaces/IBlogArticle';
+import { IGalleryPhoto } from '../interfaces/IGalleryPhoto'
 import { MessageType } from '../enums/MessageType';
 import { MessageService } from './services/message.service';
 import { NgTemplateOutlet } from '@angular/common';
 import { LocalStorageService } from './services/local-storage.service';
+import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule, NgTemplateOutlet],
+  imports: [FormsModule, NgTemplateOutlet, RouterOutlet, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   providers: [MessageService]
@@ -106,6 +110,39 @@ export class AppComponent implements OnInit, OnDestroy {
       date: '01/04/2023'
     }
   ];
+
+  galleryPhotos: IGalleryPhoto[] = [
+    {
+      id: 1,
+      img: 'balloons-and-people',
+      title: 'Воздушные шары и люди'
+    },
+    {
+      id: 2,
+      img: 'new-traveler-gear',
+      title: 'Новые карта и снаряжение путешественника'
+    },
+    {
+      id: 3,
+      img: 'dubai-burj-al-arab',
+      title: 'Вид на Бурдж-эль-Араб в Дубае'
+    },
+    {
+      id: 4,
+      img: 'tropical-beach-boats',
+      title: 'Бирюзовая лагуна и лодки'
+    },
+    {
+      id: 5,
+      img: 'horseshoe-bend-canyon',
+      title: 'Вид на Подкову Каньона'
+    },
+    {
+      id: 6,
+      img: 'retro-traveler-gear',
+      title: 'Винтажные карта и снаряжение путешественника'
+    }
+  ]
 
   tourLocation: string = '';
   tourDate: string = '';

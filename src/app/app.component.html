@@ -6,6 +6,8 @@
     <p class="loader-text">Загрузка горных вершин...</p>
   </div>
 } @else {
+  <app-header></app-header>
+  <router-outlet></router-outlet>
   <header class="header">
     <div class="bg-mountains"></div>
     <div class="super-header">
@@ -202,4 +204,20 @@
       </ng-container>
     }
   </div>
+  <section class="photo-report">
+    <div class="photo-report-container">
+      <div class="title-container">
+        <h3 class="title-wrapper regular fs-24">фото-отчет</h3>
+        <h2 class="title-main-wrapper bold fs-32">Делимся впечатлениями</h2>
+      </div>
+      <div class="gallery-container">
+        @for (galleryPhoto of galleryPhotos; track galleryPhoto.id) {
+          <div class="gallery-card">
+            <img class="gallery-card-img" [src]="'/images/' + galleryPhoto.img + '.png'" [alt]="galleryPhoto.title">
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+  <app-footer></app-footer>
 } 
